@@ -1,17 +1,17 @@
-name: remote ssh command
+name: executing when pushed on main
 on:
   push:
-    branches: [ dejan ]
+    branches: [ main ]
 jobs:
   deployment-test:
-    name: Testing dejan branch
+    name: "Main Branch test"
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using key
+    - name: Executing remote ssh command on VPS
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: sudo sh ~/ttt.sh dejan
+        script: sudo sh ~/ttt.sh main
